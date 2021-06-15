@@ -1,0 +1,10 @@
+<h1> <%= @hospital.name %> </h1>
+
+<h3>Total Doctors on call: <%= @hospital.doctors.count %></h3>
+
+<h2> Universities attended by current attending doctors</h2>
+<div>
+  <% @hospital.university.each do |doctor| %>
+    <p class="university"><%= doctor.university %></p>
+  <% end %>
+</div>

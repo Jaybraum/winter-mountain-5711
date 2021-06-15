@@ -6,6 +6,8 @@ RSpec.describe 'hospital show page' do
 
     @doc_1 = @hospital.doctors.create!(name: 'Dr. Jay', specialty: 'Surgeon', university:'Harvard')
     @doc_2 = @hospital.doctors.create!(name: 'Dr. Kay', specialty: 'Pediatrician', university:'Yale')
+    @doc_3 = @hospital.doctors.create!(name: 'Dr. Yao', specialty: 'Eye', university:'Stanford')
+    @doc_3 = @hospital.doctors.create!(name: 'Dr. Ray', specialty: 'Ear', university:'Stanford')
 
     @pat_1 = Patient.create!(name: 'Jeff', age: 31)
     @pat_2 = Patient.create!(name: 'Ana', age: 27)
@@ -24,5 +26,19 @@ RSpec.describe 'hospital show page' do
     visit "/hospitals/#{@hospital.id}"
 
     expect(page).to have_content(@hospital.name)
+  end
+
+  it 'displays the number of doctors working at the hospital' do
+    visit "/hospitals/#{@hospital.id}"
+
+    expect(page).to have_content('Total Doctors on call: 4')
+  end
+
+  it 'displays a list of universities attended' do
+    visit "/hospitals/#{@hospital.id}"
+
+    expect(page).to have_content('Harvard')
+    expect(page).to have_content('Yale')
+    expect(page).to have_content('Stanford')
   end
 end
