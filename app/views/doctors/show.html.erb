@@ -7,6 +7,11 @@
 <h3>Current Booked Patients:</h3>
 <% @doctor.patients.each do |patient|%>
   <div id="patient-<%= patient.id %>">
-    <p><%= patient.name %></p>
+    <p><%= patient.name %>
+      <%= button_to "Remove patient",
+      doctor_appointment_path(doctor_id: @doctor.id, id: patient.id),
+      method: :delete,
+      local: true %>
+    </p>
   </div>
 <% end %>
