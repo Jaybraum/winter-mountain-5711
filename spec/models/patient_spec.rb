@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Patient, type: :model do
     it {should have_many(:appointments)}
     it {should have_many(:doctors).through(:appointments)}
-  end
 
   before(:each) do
     @pat_1 = Patient.create!(name: 'Jeff', age: 31)
@@ -15,8 +14,8 @@ RSpec.describe Patient, type: :model do
   describe 'class methods' do
     it '::age_order' do
 
-      expect(Patient.age_order.first).to be(@pat_1)
-      expect(Patient.age_order.last).to be(@pat_3)
+    expect(Patient.age_order.first.name).to eq(@pat_4.name)
+    expect(Patient.age_order.last.name).to eq(@pat_3.name)
     end
   end
 end
