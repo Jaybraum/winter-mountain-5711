@@ -20,7 +20,7 @@ RSpec.describe 'Patients index page' do
     Appointment.create!(doctor:@doc_2, patient: @pat_4)
   end
 
-  it 'displays all the patients names' do
+  it 'displays all the patients names oldest to youngest' do
     visit '/patients'
 
     expect(page.all(".patient")[0].text).to eq(@pat_4.name)
